@@ -16,14 +16,11 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name="comments")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class,scope=Comment.class,property="commentId")
-
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer commentId;
     private String commentContent;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="post_id")
-    private Post post;
+
 }
