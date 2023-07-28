@@ -71,12 +71,12 @@ public class UserController {
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
 //    }
-@PutMapping ("/{userId}")
-public  ResponseEntity<User> updateUser1(@PathVariable int userId, @RequestBody User user)
+@PutMapping ("/{email}/token/{token}")
+public  ResponseEntity<User> updateUser1(@PathVariable String email,@PathVariable String token, @RequestBody User user)
 {
     AuthenticationToken authenticationToken=
 new AuthenticationToken();
-    if(authenticationService.authenticate(user.getUserEmail(),authenticationToken.getTokenValue())) {
+    if(authenticationService.authenticate(email,token)) {
             User updatedUser = userService.updateUser(user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } else {
