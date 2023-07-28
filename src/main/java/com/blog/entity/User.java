@@ -1,6 +1,7 @@
 package com.blog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class User {
     private String UserPassword;
     private String aboutUser;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
     public String getUserPassword(String encryptedPassword) {
@@ -32,3 +33,4 @@ public class User {
         return encryptedPassword;
     }
 }
+
